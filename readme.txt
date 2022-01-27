@@ -13,6 +13,11 @@ The bot joins the match channel and listens to all comms.  For every user in the
 channel, a mimic will join the spectate channel, and the eavesdropper bot will
 relay the comms to the correct mimic, with the specified delay.
 
+Fork
+----
+
+This fork was created to update the SSL setting used by the bot.
+A Dockerfile has been created to release this update in a docker container.
 
 Prerequisites
 -------------
@@ -64,7 +69,3 @@ control messages from the server, which should indicate the problem.
 Passworded access to a server has not been checked in mumble 1.2.  The bot has
 only been checked with python version 2.5.2 (with external ssl module) and
 2.6.4
-
-Feedback greatly appreciated
-
-http://frymaster.127001.org/mumble

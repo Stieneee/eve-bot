@@ -1,5 +1,6 @@
 #!/usr/bin/env python2
 #
+#Copyright (c) 2022, Tyler Stiene <tystiene@gmail.com>
 #Copyright (c) 2014, Derek Barnett <derek@skyehaven.net>
 #Copyright (c) 2009-2014, Philip Cass <frymaster@127001.org>
 #Copyright (c) 2009, Alan Ainsworth <fruitbat@127001.org>
@@ -62,6 +63,9 @@ except:
     warning+="This program requires the Google Protobuffers library (http://code.google.com/apis/protocolbuffers/) to be installed\n"
     warning+="You must run the protobuf compiler \"protoc\" on the Mumble.proto file to generate the Mumble_pb2 file\n"
     warning+="Move the Mumble.proto file from the mumble source code into the same directory as this bot and type \"protoc --python_out=. Mumble.proto\"\n"
+
+import ssl
+import Mumble_pb2
 
 headerFormat=">HI"
 eavesdropper=None
@@ -163,7 +167,7 @@ class mumbleConnection(threading.Thread):
         self.plannedPackets=collections.deque()
         tcpSock=socket.socket(type=socket.SOCK_STREAM)
         self.socketLock=thread.allocate_lock()
-        self.socket=ssl.wrap_socket(tcpSock,ssl_version=ssl.PROTOCOL_TLSv1)
+        self.socket=ssl.wrap_socket(tcpSock,ssl_version=ssl.PROTOCOL_SSLv23)
         self.socket.setsockopt(socket.SOL_TCP,socket.TCP_NODELAY,1)
         self.host=host
         self.nickname=nickname
